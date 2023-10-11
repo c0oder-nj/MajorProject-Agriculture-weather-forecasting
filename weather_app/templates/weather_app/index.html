@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>मौसम मित्र</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<h1 style="margin-top:-30px">मौसम मित्र</h1>
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="city" placeholder="अपने शहर का नाम दर्ज करें">
+  <button type="submit">मौसम की जानकारी देखें</button>
+</form>
+
+<div class="comparison-container">
+  {% if weather_data1 %}
+    <div class="city-container">
+      {% include 'weather_app/city_weather.html' with weather_data=weather_data1 daily_forecasts=daily_forecasts1 %}
+    </div>
+  {% endif %}
+  
+</div>
+
+</body>
+</html>
